@@ -33,11 +33,9 @@ public class CommandView {
                 String color = CommandView.COLORS[playController.getColor().ordinal()];
                 do {
                     String moveOption = this.console.readString("Mueven las " + color + ": ");
-                    int originRow = Integer.parseInt(moveOption.substring(0, 1));
-                    int originColumn = Integer.parseInt(moveOption.substring(1, 2));
-                    int targetRow = Integer.parseInt(moveOption.substring(3, 4));
-                    int targetColumn = Integer.parseInt(moveOption.substring(4, 5));
-                    error = playController.move(new Coordinate(originRow, originColumn), new Coordinate(targetRow, targetColumn));
+                    int origin = Integer.parseInt(moveOption.substring(0, 2));
+                    int target = Integer.parseInt(moveOption.substring(3, 5));
+                    error = playController.move(new Coordinate(origin/10, origin%10), new Coordinate(target/10, target%10));
                     if (error != null) {
                         console.writeln(ERROR + error.getText());
                     }
